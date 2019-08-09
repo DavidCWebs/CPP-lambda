@@ -65,7 +65,7 @@ Passing Generic Lambda to Template Function
 -------------------------------------------
 In the following example, `ForEach()` can transform elements of a vector - the type of the element being generic.
 
-The generic lambda is straightforward enough, but note the template function signature - the 
+The generic lambda is straightforward enough, but note the template function signature - one way or the other, you should let the compiler deduce the type for the Lambda expression.
 
 ```c++
 #include <iostream>
