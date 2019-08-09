@@ -79,7 +79,7 @@ void ForEach(std::vector<T>& container, Func f)
 	}
 }
 
-// Equivalent:
+// Equivalent to the above - less typing with `auto`!
 void ForEachAuto(std::vector<auto>& container, auto const& lambdaExpression)
 {
 	for (auto& el : container) {
@@ -101,16 +101,36 @@ int main()
 }
 ```
 
-In the code above, the argument for f can be a:
+Note that the definition of the generic function that accepts the lambda as a parameter can either use `template` syntax or the `auto` keyword.
 
-- Lambda expression
-- `std::function`
-- functor
-- function pointer
+Captures
+--------
+The captured variables can be passed by value or by reference.
 
-Note that you can't pass a lambda function object as an argument of type `std::function<T>` without explicitly specifying T.
+### Copy Values
+Implicitly capture all automatic variables by value - copy values into the lambda expression:
 
-This is because template type deduction tries to match type of the lambda with the type of `std::function<T>` which is not possible because types are different.
+```c++
+[=]
+```
+### Pass by Reference
+
+Implicitly capture all automatic variables by reference - copy references into the lambda expression:
+
+```c++
+[&]
+```
+
+### Override the Default Capture Method
+You can set a default capture method and override this for individual variables:
+
+```c++
+// Capture by reference, except a which is captured by copy:
+[&, a]{}
+
+// Capture all by copy, except a which is captured by reference:
+[=, &a]
+```
 
 References
 ----------

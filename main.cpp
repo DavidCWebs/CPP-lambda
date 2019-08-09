@@ -60,3 +60,18 @@ int main()
 
 	return 0;
 }
+
+// @TODO: Check this!
+// @see https://stackoverflow.com/a/13359347/3590673
+// In the code above, in the function definition `ForEach()` the argument for f can be a:
+//
+// - Lambda expression
+// - `std::function`
+// - functor
+// - function pointer
+//
+// Note that you can't pass a lambda function object as an argument of type `std::function<T>` without explicitly specifying T.
+//
+// This is because template type deduction tries to match type of the lambda with the type of `std::function<T>` which is not possible because types are different.
+
+
